@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/", function(req, res) {
-    db.Burger.findAll({}).then(function(result) {
+    db.Burger.findAll().then(function(result) {
       res.render("index", {
         burgers: result
       });
