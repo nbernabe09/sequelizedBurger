@@ -1,8 +1,8 @@
-var Burger = require("../models/burger.js");
+var db = require("../models");
 
 module.exports = function(app) {
   app.get("/", function(req, res) {
-    Burger.findAll({}).then(function(result) {
+    db.Burger.findAll({}).then(function(result) {
       res.render("index", {
         burgers: result
       });
@@ -10,7 +10,7 @@ module.exports = function(app) {
   });
 
   app.post("/", function(req, res) {
-    Burger.create({
+    db.Burger.create({
       burger_name: req.body.burger_name
     }).then(function() {
       res.redirect("/");
@@ -18,7 +18,7 @@ module.exports = function(app) {
   });
 
   app.put("/:id", function(req, res) {
-    Burger.update({
+    db.Burger.update({
       devoured: true
     }, {
       where: {
